@@ -23,15 +23,40 @@
 
 # Dev notes:
 
+## Stack:
+
+- [Python](https://www.python.org/downloads/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Redis](https://redis.io/)
+
 ## Install and setup:
 ```
 pip install django
 django-admin startproject GeekShop
 ```
 
-create app:
+## create app:
 ```
 python manage.py startapp products
+```
+
+## Migrations:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+## Super User
+```
+python manage.py createsuperuser
+```
+
+
+setup static:
+```
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 ```
 
 ---

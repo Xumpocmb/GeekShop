@@ -1,11 +1,13 @@
 # Geek Shop
 
+---
+
 ## Clothes Shop for Geeks
 
-### !! work in progress !!
+### :warning: !! work in progress !! :warning:
 
 ---
-## Задача проекта:
+# Задача проекта:
 * Создать интернет магазин одежды.
 
 ## :information_source: Возможности:
@@ -16,9 +18,12 @@
 * Личный кабинет пользователя.
 
 * Корзина покупок пользователя.
+
 ---
 
-install and setup:
+# Dev notes:
+
+## Install and setup:
 ```
 pip install django
 django-admin startproject GeekShop
@@ -28,4 +33,7 @@ create app:
 ```
 python manage.py startapp products
 ```
+
+---
+
 

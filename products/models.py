@@ -1,4 +1,5 @@
 from django.db import models
+
 from users.models import User
 
 
@@ -37,4 +38,4 @@ class Basket(models.Model):
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Корзина: {self.user.email} | Продукт: {self.product.name}'
+        return f'Корзина: {self.user.username} | Продукт: {self.product.name}'

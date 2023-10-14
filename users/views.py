@@ -1,7 +1,8 @@
 from django.contrib import auth, messages
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
-from users.models import User
+
+from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
 
@@ -42,10 +43,6 @@ def registration(request):
 
 
 def profile(request):
-    context = {
-        'title': 'Профиль',
-        'form': UserProfileForm(instance=request.user),
-    }
     if request.method == 'POST':
         form = UserProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
@@ -53,7 +50,15 @@ def profile(request):
             messages.success(request, 'Профиль обновлен')
             return HttpResponseRedirect(reverse('users:profile'))
         else:
-            print(form.errors)
+            messages.error(request, 'Профиль не обновлен')
+            return HttpResponseRedirect(reverse('users:profile'))
+    else:
+        form = UserProfileForm(instance=request.user)
+    context = {
+        'title': 'Профиль',
+        'form': form,
+        'basket': Basket.objects.filter(user=request.user),
+    }
     return render(request, 'users/profile.html', context=context)
 
 

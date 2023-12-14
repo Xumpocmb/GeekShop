@@ -6,7 +6,6 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 
 from common.views import TitleMixin
-from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from users.models import User
 
@@ -14,6 +13,7 @@ from users.models import User
 class UserLoginView(LoginView):
     template_name = 'users/login.html'
     form_class = UserLoginForm
+    success_url = reverse_lazy('users:profile')
 
 
 class UserRegistrationView(TitleMixin, SuccessMessageMixin, CreateView):
@@ -34,11 +34,6 @@ class UserProfileView(TitleMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('users:profile', args=[self.object.id])
-
-    def get_context_data(self, **kwargs):
-        context = super(UserProfileView, self).get_context_data(**kwargs)
-        context['baskets'] = Basket.objects.filter(user=self.object)
-        return context
 
 
 def logout(request):
